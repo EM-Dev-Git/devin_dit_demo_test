@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from routers import auth, transcript, minutes
+from routers import auth, transcript, minutes, graph
 from modules.database import engine, Base
 from modules.logger import setup_logging
 import os
@@ -29,6 +29,7 @@ app.add_middleware(
 app.include_router(auth.router, prefix="/auth", tags=["authentication"])
 app.include_router(transcript.router, prefix="/transcript", tags=["transcript"])
 app.include_router(minutes.router, prefix="/minutes", tags=["minutes"])
+app.include_router(graph.router, prefix="/graph", tags=["microsoft-graph"])
 
 @app.get("/")
 async def root():
